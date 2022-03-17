@@ -1,16 +1,17 @@
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from user_auth_app.models import UserProfileInfo
 
-class UserForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput())
-    class Meta():
+class UserForm(UserCreationForm):
+    class Meta:
         model = User
-        fields = ('username', 'email', 'password')
+        fields = ('first_name', 'last_name', 'username', 'email', 'password1', 'password2')
+
 
 
 class UserProfileInfoForm(forms.ModelForm):
-    class Meta():
+    class Meta:
         model = UserProfileInfo
-        fields = ('portfolio_site', 'profile_picture')
+        fields = ('role', 'profile_picture', 'address_line1', 'address_city', 'address_state', 'address_pincode')
 
